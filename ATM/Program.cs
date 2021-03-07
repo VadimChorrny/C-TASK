@@ -5,15 +5,13 @@ namespace Main
     class Card
     {
         private decimal Money_ = 0;
-        private int Id;
         private String Owner;
         private String Login, Password;
 
         public Card() { }
-        public Card(decimal money, int id, string log, string pass)
+        public Card(decimal money, string log, string pass)
         {
             this.Money_ = money;
-            this.Id = id;
             this.Login = log;
             this.Password = pass;
         }
@@ -47,11 +45,6 @@ namespace Main
             }
             return money;
         }
-        
-        public int getId()
-        {
-            return Id;
-        }
 
         public String getOwner()
         {
@@ -76,6 +69,7 @@ namespace Main
                 {
                     do
                     {
+                        Console.Clear();
                         Console.WriteLine("1. Add money");
                         Console.WriteLine("2. Minus money");
                         Console.WriteLine("3. Show balance");
@@ -94,8 +88,8 @@ namespace Main
                                 break;
                             case '3':
                                 ShowBalance();
+                                Console.ReadKey();
                                 break;
-
                         }
 
                     } while (action != 'q');
@@ -114,12 +108,7 @@ namespace Main
 
     class ATM : Card 
     {
-        private bool state;
-        public void CardInfo()
-        {
-            Console.WriteLine($"ID : {getId()}");
-            Console.WriteLine($"Name owner: {getOwner()}");
-        }
+        private bool state = true;
 
         public bool isInsert()
         {
@@ -130,7 +119,6 @@ namespace Main
         {
             if(isInsert())
             {
-                CardInfo();
                 Menu();
             }
         }
@@ -142,8 +130,10 @@ namespace Main
     {
         static void Main(string[] args)
         {
-            Card card = new Card();
-            card.Menu();
+            //Card card = new Card();
+            //card.Menu();
+            ATM atm = new ATM();
+            atm.CardOperation();
         }
     }
 }
