@@ -54,6 +54,15 @@ namespace Jugged_Arrays
             }
         }
 
+        static void AddNewElement(int[][] arr,int elem)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Array.Resize(ref arr[i], arr[i].Length + 1);
+                arr[i][arr[i].Length - 1] = elem;
+            }
+        }
+
         static void Main(string[] args)
         {
             int[][] array = new int[3][];
