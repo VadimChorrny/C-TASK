@@ -54,12 +54,19 @@ namespace Jugged_Arrays
             }
         }
 
-        static void AddNewElement(int[][] arr,int elem)
+        static void AddNewItem(ref int[][] arr,int item)
         {
             for (int i = 0; i < arr.Length; i++)
             {
                 Array.Resize(ref arr[i], arr[i].Length + 1);
-                arr[i][arr[i].Length - 1] = elem;
+                arr[i][arr[i].Length - 1] = item;
+            }
+        }
+        static void RemoveItem(ref int[][] arr)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Array.Resize(ref arr[i], arr[i].Length - 1);
             }
         }
 
@@ -72,6 +79,14 @@ namespace Jugged_Arrays
             array[2] = new int[5];
 
             FillArray(array);
+            ShowArray(array);
+            Console.WriteLine("------Add Item------");
+
+            AddNewItem(ref array,15);
+            ShowArray(array);
+
+            Console.WriteLine("-----Remove Item-----");
+            RemoveItem(ref array);
             ShowArray(array);
 
             Console.WriteLine("-----1-----");
