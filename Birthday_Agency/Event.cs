@@ -41,7 +41,6 @@ namespace Birthday_Agency
         public void AddDays(int day)
         {
             date.AddDays(day);
-            date.Day.ToString();
         }
 
         public void AddWeek(int week)
