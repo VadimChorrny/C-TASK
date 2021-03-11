@@ -46,6 +46,7 @@ namespace Birthday_Agency
 
         public void AddWeek(int week)
         {
+            // output int days
             date.AddDays(week * 7);
         }
 
