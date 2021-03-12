@@ -46,5 +46,46 @@ namespace Math
             one.y *= num;
             return one;
         }
+        public static bool operator !=(Vector one, Vector two)
+        {
+            return !(one == two);
+        }
+        public static bool operator ==(Vector one, Vector two)
+        {
+            if (Equals(one, two))
+                return true;
+            else if (one == null)
+                return false;
+            return one.Equals(two);
+        }
+        public static Vector operator ++(Vector vector)
+        {
+            return new Vector
+            {
+                x = vector.x + 1 ,
+                y = vector.y + 1
+            };
+        }
+        public static Vector operator --(Vector vector)
+        {
+            return new Vector
+            {
+                x = vector.x - 1 ,
+                y = vector.y - 1
+            };
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+        public override bool Equals(object obj)
+        {
+            Vector vector = obj as Vector;
+            if (vector == null)
+            {
+                return false;
+            }
+            return vector.Equals(vector);
+        }
     }
 }
