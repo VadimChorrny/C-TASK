@@ -87,5 +87,9 @@ namespace Math
             }
             return vector.Equals(vector);
         }
+        public static implicit operator double (Vector one)
+        {
+            return (double) one.x / one.y;
+        }
     }
 }
