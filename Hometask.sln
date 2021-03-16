@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "String_", "String_\String_.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Birthday_Agency", "Birthday_Agency\Birthday_Agency.csproj", "{593BCED4-2071-4AEA-B7E5-FA51E2FCB825}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math", "Math\Math.csproj", "{670C30A8-AA26-4B9F-AD06-8E648F6FC6E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Math", "Math\Math.csproj", "{670C30A8-AA26-4B9F-AD06-8E648F6FC6E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nullable", "Nullable\Nullable.csproj", "{68479BFA-A801-44F1-B5F5-7C658892CCD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nullable", "Nullable\Nullable.csproj", "{68479BFA-A801-44F1-B5F5-7C658892CCD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exception_Homework", "Exception_Homework\Exception_Homework.csproj", "{11E09CC1-13B3-4519-BC3F-D295BFE7BBDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{68479BFA-A801-44F1-B5F5-7C658892CCD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68479BFA-A801-44F1-B5F5-7C658892CCD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68479BFA-A801-44F1-B5F5-7C658892CCD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11E09CC1-13B3-4519-BC3F-D295BFE7BBDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11E09CC1-13B3-4519-BC3F-D295BFE7BBDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11E09CC1-13B3-4519-BC3F-D295BFE7BBDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11E09CC1-13B3-4519-BC3F-D295BFE7BBDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
