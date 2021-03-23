@@ -2,8 +2,6 @@
 
 namespace Array_
 {
-
-    // Book
     class Book
     {
         public String Author { get; set; }
@@ -24,12 +22,38 @@ namespace Array_
             Console.WriteLine(Name);
             Console.WriteLine(CreateYear);
         }
+        public String this[String index]
+        {
+            get
+            {
+                if(index.ToLower() == "name")
+                {
+                    return Name;
+                }
+                else if(index.ToLower() == "author")
+                {
+                    return Author;
+                }
+                else if (index.ToLower() == "cypher")
+                {
+                    return Cypher;
+                }
+                else if(index.ToLower() == "year")
+                {
+                    return CreateYear;
+                }
+                else
+                {
+                    throw new Exception("Error! Don't this index...!");
+                }
+            }
+        }
     }
-
     class Library
     {
         private Book[] book;
         public Library() { book = new Book[0]; } // start init
+
         public void AddBook(Book books)
         {
             if (book == null)
@@ -52,7 +76,6 @@ namespace Array_
             SortByAuthor();
             Array.Sort(book, (e, e1) => String.Compare(e.Name, e1.Name));
         }
-
         public void SearchName(String Name)
         {
             int show = Array.FindIndex(book, (e) => e.Name == Name);
@@ -70,9 +93,14 @@ namespace Array_
                 if (book.Length > 0)
                 {
                     item.print();
-                    Console.WriteLine("***************");
+                    Console.WriteLine("**************");
                 }
             }
+        }
+        public Book this[int index]
+        {
+            get => book[index];
+            set => this.book[index] = value;
         }
     }
 
