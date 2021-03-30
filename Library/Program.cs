@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 namespace Array_
 {
@@ -26,11 +27,11 @@ namespace Array_
         {
             get
             {
-                if(index.ToLower() == "name")
+                if (index.ToLower() == "name")
                 {
                     return Name;
                 }
-                else if(index.ToLower() == "author")
+                else if (index.ToLower() == "author")
                 {
                     return Author;
                 }
@@ -38,7 +39,7 @@ namespace Array_
                 {
                     return Cypher;
                 }
-                else if(index.ToLower() == "year")
+                else if (index.ToLower() == "year")
                 {
                     return CreateYear;
                 }
@@ -49,9 +50,9 @@ namespace Array_
             }
         }
     }
-    class Library
+    class Library : IEnumerable
     {
-        private Book[] book;
+        public Book[] book;
         public Library() { book = new Book[0]; } // start init
 
         public void AddBook(Book books)
@@ -97,15 +98,69 @@ namespace Array_
                 }
             }
         }
+
+        public IEnumerator GetEnumerator()
+        {
+            return book.GetEnumerator();
+        }
+        public IEnumerator GetReverseEnumerator() // reverse
+        {
+            for (int i = book.Length; i >= 0; i++)
+            {
+                yield return book[i];
+            }
+        }
         public Book this[int index]
         {
             get => book[index];
             set => this.book[index] = value;
         }
     }
-
+    public delegate int Action(int element);
     class Program
     {
+        static void ChangeArray(int[] arr,Action action) // two task
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = action(arr[i]);
+            }
+            // for output
+            Console.WriteLine($"~~~~OUTPUT~~~~");
+            foreach (var item in arr)
+            {
+                Console.WriteLine(item);
+            }
+        }
+        static int[] FindAll(int[] arr,int index,Action action)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if(arr[i] == index)
+                {
+                    i = action(arr[i]);
+                    Console.WriteLine(i);
+                }
+            }
+            return arr;
+        }
+        static void Sort<T>(T[] arr, Comparison<T> comp)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                for (int j = 0; j < arr.Length - i; j++)
+                {
+                    comp(arr[i], arr[j + 1]);
+                }
+            }
+
+            // for output
+
+            foreach (var item in arr)
+            {
+                Console.WriteLine(item);
+            }
+        }
         static void Main()
         {
             Library lib = new Library();
@@ -136,15 +191,17 @@ namespace Array_
             Console.WriteLine("-----------------------");
             lib.SortByAuthorByName();
             lib.Render();
+            lib.book.GetEnumerator();
 
+            Console.WriteLine("////////////////////");
 
-
-
+            ChangeArray(new int[] { 1, 2, 3, 4, 5, 6, 7 }, (int element) => element += 1);
+            Console.WriteLine("***********");
+            FindAll(new int[] { 1,2,3,4,5,6,7,8,9},4,(e) => e - 1 );
 
             //Console.WriteLine("Test");
             //// 7
             //int[] arr = { 1, -2, -3, 4, 5, -6, 1 - 1 };
-
             //int[] arr1 = Array.FindAll(arr, (e) => { return e < 0; });
             //for (int i = 0; i < arr1.Length; i++)
             //{

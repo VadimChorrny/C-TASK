@@ -17,12 +17,13 @@ namespace Delegate_Task
         public String Name { get => name; set { name = value; } }
         public event  Notify Message ;
         public readonly byte Way = 100;
+        private ushort speed;
         public ushort Speed
         {
-            get => Speed;
+            get => speed;
             set
             {
-                Speed = value;
+                speed = value;
                 if(value < Way)
                 {
                     Drive();
@@ -45,6 +46,7 @@ namespace Delegate_Task
         public void Drive()
         {
             Speed = (ushort)new Random().Next(0, 250);
+            Message?.Invoke($"Go to speed {Speed}");
         }
         public void SlowDown()
         {
