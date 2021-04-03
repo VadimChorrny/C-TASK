@@ -46,6 +46,7 @@ namespace Delegate_Task
         public void Drive()
         {
             Speed = (ushort)new Random().Next(0, 250);
+            Console.WriteLine("Car drive..");
             Message?.Invoke($"Go to speed {Speed}");
         }
         public void SlowDown()
