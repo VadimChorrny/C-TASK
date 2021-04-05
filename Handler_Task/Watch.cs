@@ -4,53 +4,86 @@ using System.Text;
 
 namespace Handler_Task
 {
+    class MyArgs : EventArgs
+    {
+        public byte Hour { get; set; }
+        public byte Minute { get; set; }
+        public MyArgs(byte hour, byte minute)
+        {
+            Hour = hour;
+            Minute = minute;
+        }
+    }
+
     class Watch
     {
-        public event EventHandler<EventArgs> timer;
+        public event EventHandler<MyArgs> timer;
+        private byte hour;
+        private byte minute;
         public byte Hour
         {
-            get => Hour;
+            get => hour;
             set
             {
-                Hour = value;
-                if (value <= 24 && value > 0)
+
+                if (value >= 24)
                 {
-                    timer?.Invoke($"Timer update {this}", EventArgs.Empty);
+                    hour = 0;
                 }
-                else
-                {
-                    timer?.Invoke($"Error with time,you enter {this}", EventArgs.Empty);
-                }
+                hour = value;
             }
         }
+        public bool isAlarm = false;
         public byte Minute
+
         {
-            get => Minute;
+            get => minute;
             set
             {
-                Minute = value;
-                if (value < 60 && value > 0)
+                minute = value;
+                if (value <= 59)
                 {
-                    Tick();
-                    timer?.Invoke($"You update minute {this}", EventArgs.Empty);
+                    Console.WriteLine("Minute update!");
                 }
-                else if(value >= 60)
+                else if(value >= 59)
                 {
+                    minute = 0;
                     Hour++;
-                    timer?.Invoke($"Задзвонив будильник!\n{this}", EventArgs.Empty);
                 }
+
             }
         }
-        public Watch(byte hour,byte minute)
-        {
-            this.Hour = hour;
-            this.Minute = minute;
-        }
+
+        public virtual void OnTimer(MyArgs e) => timer?.Invoke(this,e);
 
         public void Tick()
         {
-            this.Minute += 1;
+            if(!isAlarm)
+            {
+                Minute += 1;
+                isAlarm = true;
+                OnTimer(new MyArgs(Hour, Minute));
+                Console.WriteLine("Спрацював будильник!");
+            }
+            else
+            {
+                Console.WriteLine("Будильник вже був спрацьований!");
+            }
         }
 
+
+        public override string ToString()
+        {
+            return $"Hour - {Hour}\n" +
+                $"Minute - {Minute}";
+        }
+    }
+    class HourMan
+    {
+        public void Handler(object sender, EventArgs args)
+        {
+            Watch watch = (Watch)sender;
+            Console.WriteLine($"Hour {watch.Hour},Minute {watch.Minute},State timer {watch.isAlarm}");
+        }
     }
 }
