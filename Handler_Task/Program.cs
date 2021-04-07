@@ -8,7 +8,7 @@ namespace Handler_Task
         static void Main(string[] args)
         {
             HourMan hourMan = new HourMan();
-            Watch watch = new Watch() { Hour = 10, Minute = 60 };
+            Watch watch = new Watch() { Hour = 10, Minute = 30 };
             Console.WriteLine(watch);
             watch.timer += hourMan.Handler;
 
